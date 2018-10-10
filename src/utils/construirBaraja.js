@@ -1,21 +1,21 @@
 const NUMERO_DE_CARTAS = 20;
 
 export default () => {
-  const iconos = ["ico-1", "ico-2"];
+	const clasesFontAwesome = ['ico-1', 'ico-2'];
 
-  let cartas = [];
+	let cartas = [];
 
-  while (cartas.length < NUMERO_DE_CARTAS) {
-    const index = Math.floor(Math.random() * iconos.length);
+	while (cartas.length < NUMERO_DE_CARTAS) {
+		const index = Math.floor(Math.random() * clasesFontAwesome.length);
 
-    const carta = {
-      icono: iconos.splice(index, 1)[0],
-      fueAdivinada: false
-    };
+		const unaCarta = {
+			icono: clasesFontAwesome.splice(index, 1)[0],
+			fueAdivinada: false
+		};
 
-    cartas.push(carta);
-    cartas.push({ ...carta });
+		cartas.push(unaCarta);
+		cartas.push({ ...unaCarta });
 
-    return cartas;
-  }
+		return cartas;
+	}
 };
