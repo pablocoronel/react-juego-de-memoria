@@ -4,12 +4,10 @@ import Carta from './Carta';
 
 export default class Tablero extends Component {
 	render() {
-		const cartas = [1, 2, 3, 4, 5];
-
 		return (
 			<div className="tablero">
-				{cartas.map((carta) => (
-					<Carta />
+				{this.props.baraja.map((carta, index) => (
+					<Carta carta={carta.icono} key={index}/>
 				))}
 			</div>
 		);

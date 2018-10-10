@@ -1,8 +1,9 @@
+import shuffle from 'lodash.shuffle';
+import FontAwesomeClasses from './fontAwesomeClasses';
+
 const NUMERO_DE_CARTAS = 20;
-
 export default () => {
-	const clasesFontAwesome = ['ico-1', 'ico-2'];
-
+	const clasesFontAwesome = FontAwesomeClasses();
 	let cartas = [];
 
 	while (cartas.length < NUMERO_DE_CARTAS) {
@@ -15,7 +16,7 @@ export default () => {
 
 		cartas.push(unaCarta);
 		cartas.push({ ...unaCarta });
-
-		return cartas;
+		// console.log(cartas.length);
 	}
+	return shuffle(cartas);
 };
