@@ -49,12 +49,51 @@ class App extends Component {
 		}
 
 		// Agregar la carta clickeada al array que guarda las cartas a comparar:
-		const pareja = [...this.state.parejaSeleccionada, carta];
-
+		const parejaActual = [...this.state.parejaSeleccionada, carta];
+		
 		// actualiza el array de comparacion en  el state:
 		this.setState({
-			parejaSeleccionada: pareja
+			parejaSeleccionada: parejaActual
 		});
+		
+		// console.log(parejaActual)
+		// si hay 2 cartas para comparar
+		if (parejaActual.length === 2) {
+			this.compararPareja(parejaActual);
+		}
+	}
+
+	// compara las cartas del array de comparacion
+	compararPareja(pareja) {
+		// en el estado actualiza el estaComparando
+		this.setState({
+			estaComparando: true
+		});
+
+		setTimeout(() => {
+			// esparse las cartas a comparar
+			const [primeraCarta, segundaCarta] = pareja;
+			// la baraja
+			let barajaNueva = this.state.baraja;
+
+			// si las dos cartas son iguales
+			if (primeraCarta.icono === segundaCarta.icono) {
+				barajaNueva = barajaNueva.map((cadaCarta, index) => {
+					if (cadaCarta.icono !== primeraCarta.icono) {
+						return cadaCarta;
+					} else {
+						return { ...cadaCarta, fueAdivinada: true };
+					}
+				});
+			}
+
+			// actualizar el state con la baraja nueva
+			this.setState({
+				baraja: barajaNueva,
+				parejaSeleccionada: [],
+				estaComparando: false
+			});
+		}, 1000);
 	}
 }
 
