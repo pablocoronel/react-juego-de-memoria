@@ -1,22 +1,17 @@
 .carta {
 	width: 125px;
 	height: 125px;
-	position: relative;
-	transition: all 0.5s ease;
-}
-.normal {
-	transform: rotateY(180deg);
-	-webkit-backface-visibility: hidden;
-}
-.portada {
-	width: 125px;
-	height: 125px;
+	/* position: relative; */
+	/* transition: all 0.5s ease; */
 	background-color: #ffb300;
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: 1;
-	transform: rotateY(180deg);
+}
+.carta-girada {
+	/* width: 125px; */
+	/* height: 125px; */
+	/* position: relative; */
+	/* transform: rotateY(180deg); */
+	/* -webkit-backface-visibility: hidden; */
+	background-color: rgb(3, 220, 244);
 }
 
 .contenido {
@@ -25,7 +20,9 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: rgb(3, 220, 244);
+	/* position: absolute; */
+	top: 0;
+	left: 0;
 }
 
 .ReactFlipCard {
