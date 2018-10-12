@@ -10,7 +10,8 @@ const getEstadoInicial = () => {
 	return {
 		baraja,
 		parejaSeleccionada: [],
-		estaComparando: false
+		estaComparando: false,
+		numeroDeIntentos: 0
 	};
 };
 
@@ -25,7 +26,10 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<Header />
+				<Header
+					numeroDeIntentos={this.state.numeroDeIntentos}
+					reiniciarJuego={() => this.reiniciarJuego()}
+				/>
 
 				{/* Tablero recibe: la baraja con todas las cartas disponibles, el estado actual del contenedor de cartas a comparar, la funcion para seleccionar una carta (la va a usar el coponente Carta) */}
 				<Tablero
@@ -50,12 +54,12 @@ class App extends Component {
 
 		// Agregar la carta clickeada al array que guarda las cartas a comparar:
 		const parejaActual = [...this.state.parejaSeleccionada, carta];
-		
+
 		// actualiza el array de comparacion en  el state:
 		this.setState({
 			parejaSeleccionada: parejaActual
 		});
-		
+
 		// console.log(parejaActual)
 		// si hay 2 cartas para comparar
 		if (parejaActual.length === 2) {
@@ -88,12 +92,30 @@ class App extends Component {
 			}
 
 			// actualizar el state con la baraja nueva
+			this.verificarSiHayGanador(barajaNueva);
 			this.setState({
 				baraja: barajaNueva,
 				parejaSeleccionada: [],
-				estaComparando: false
+				estaComparando: false,
+				numeroDeIntentos: this.state.numeroDeIntentos + 1
 			});
 		}, 1000);
+	}
+
+	// verifica si hay un ganador
+	verificarSiHayGanador(baraja) {
+		// Probar si ganó
+		// baraja.map((x) => (x.fueAdivinada = true));
+		let hayGanador =
+			baraja.filter((unaCarta) => !unaCarta.fueAdivinada).length === 0;
+
+		if (hayGanador) {
+			alert('Ganaste en ' + this.state.numeroDeIntentos + ' intentos');
+		}
+	}
+
+	reiniciarJuego() {
+		this.setState(getEstadoInicial());
 	}
 }
 

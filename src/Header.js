@@ -7,9 +7,16 @@ export default class Header extends Component {
 			<header>
 				<div className="titulo">React juego de memoria</div>
 
-				<button className="boton-reiniciar">Reiniciar</button>
+				<button
+					className="boton-reiniciar"
+					onClick={this.props.reiniciarJuego}
+				>
+					Reiniciar
+				</button>
 
-				<div className="titulo">Intentos:</div>
+				<div className="titulo">
+					Intentos: {this.props.numeroDeIntentos}
+				</div>
 			</header>
 		);
 	}
